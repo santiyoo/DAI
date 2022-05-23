@@ -19,6 +19,26 @@ class PizzaService {
         } catch (error) {
             console.log(error)
         }
-        returnEntity
+        return returnEntity;
     } 
+
+
+    deleteById = async (id) =>{
+
+        let rowsAffected = 0;
+
+        try {
+
+            let pool = await sql.connect(config);
+            let result = await pool.request()
+                                            .input('pId', sql.Int, id)
+                                            .query('DELETE FROM Pizzas WHERE id = @pId');
+            rowsAffected = result.rowsAffected;
+
+        } catch (error) {
+            console.log(error)
+        }
+        return rowsAffected;
+    } 
+    
 }
