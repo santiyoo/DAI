@@ -4,9 +4,8 @@ AS
 BEGIN
 	SELECT * From Pizzas WHERE id = @id
 END
-EXEC traerPizza 1
 
-ALTER PROCEDURE agregarPizza
+CREATE PROCEDURE agregarPizza
 @nombre varchar(150),
 @libreGluten bit,
 @importe float,
@@ -15,6 +14,7 @@ AS
 BEGIN
 	INSERT INTO Pizzas(Nombre, LibreGluten, Importe, Descripcion) 
 	VALUES (@nombre,@libreGluten, @importe, @descripcion)
+	SELECT CAST(SCOPE_IDENTITY() AS INT)
 END
 
 CREATE PROCEDURE actualizarPizza
