@@ -7,8 +7,3 @@ import PizzaService from "./src/services/pizzas-services.js"
 
 // console.log(result.recordsets.length);
 
-let data;
-
-let srv = new PizzaService
-data = await srv.getById(2);
-console.log(data)
