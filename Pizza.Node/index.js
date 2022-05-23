@@ -1,9 +1,14 @@
-import sql from 'mssql';
-import config from "./dbconfig.js"
-import PizzaService from "./src/services/pizzas-services.js"
+import PizzaService from "./src/services/pizzas-services.js";
 
-// let pool = await sql.connect(config);
-// let result = await pool.request().query("SELECT TOP 2 * FROM Pizzas");
+let srv = new PizzaService();
+let todo = await srv.getAll();
+console.log(todo);
 
-// console.log(result.recordsets.length);
+let pizzaId = await srv.getById(1);
+console.log(pizzaId);
 
+<<<<<<< HEAD
+=======
+let pizzaBorrada = await srv.deleteById(1);
+console.log(pizzaBorrada);
+>>>>>>> 10d75dc9b590e30a747894a97346641cf2671c0c

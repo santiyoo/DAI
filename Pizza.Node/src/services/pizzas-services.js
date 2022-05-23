@@ -1,27 +1,37 @@
 import sql from 'mssql'
-import config from '../../dbconfig'
+import config from '../../dbconfig.js'
 
 
 class PizzaService {
-
-    getById = async (id) =>{
-
+    getAll = async ()=>{
         let returnEntity = null;
+        console.log("Estoy en PizzaService.getAll")
+        try{
+            let pool = await sql.connect(config);
+            let result = await pool.request().query("SELECT * FROM Pizzas");
+            returnEntity = result.recordset;
+        }
+        catch(error){
+            console.log(error);
+        }
+        return returnEntity;
+    }
 
-        try {
-
+    getById = async (id) => {
+        let returnEntity = null;
+        console.log("Estoy en PizzaService.getById")
+        try{
             let pool = await sql.connect(config);
             let result = await pool.request()
                                             .input('pId', sql.Int, id)
                                             .query('SELECT TOP 2 * FROM Pizzas WHERE id = @pId');
             returnEntity = result.recordsets[0][0]
-
-        } catch (error) {
+        } 
+        catch (error) {
             console.log(error)
         }
         return returnEntity;
     } 
-
 
     deleteById = async (id) =>{
 
@@ -42,3 +52,5 @@ class PizzaService {
     } 
     
 }
+
+export default PizzaService;

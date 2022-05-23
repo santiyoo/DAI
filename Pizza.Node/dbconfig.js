@@ -1,7 +1,7 @@
 const config = {
     user: 'Pizzas',
     password: 'Pizzas',
-    server: 'A-BTA-09',
+    server: 'A-BTA-10',
     database: 'DAI-Pizzas',
     options: {
         trustServerCertificate: true,
