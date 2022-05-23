@@ -9,5 +9,8 @@
     "start": "node index.js"
   },
   "author": "Abraldes Joaquin & Yoo Santino",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "mssql": "^8.1.1"
+  }
 }

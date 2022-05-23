@@ -9,5 +9,6 @@ import PizzaService from "./src/services/pizzas-services.js"
 
 let data;
 
-data = await PizzaService.getById(2);
+let srv = new PizzaService
+data = await srv.getById(2);
 console.log(data)
