@@ -5,8 +5,7 @@
      importe;
      descripcion;
 
-    //  constructor(id, nombre, libreGluten, importe, descripcion){
-    //      this.id = id;
+    //  constructor(nombre, libreGluten, importe, descripcion){
     //      this.nombre = nombre;
     //      this.libreGluten = libreGluten;
     //      this.importe = importe;

@@ -12,6 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.0.1",
+<<<<<<< HEAD
+=======
+    "env": "^0.0.2",
+>>>>>>> 5aaf48f4fcfb11940acf7d74da68e0326264b096
     "mssql": "^8.1.1"
   }
 }
