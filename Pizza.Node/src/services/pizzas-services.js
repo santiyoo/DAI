@@ -34,9 +34,7 @@ class PizzaService {
     } 
 
     deleteById = async (id) =>{
-
         let rowsAffected = 0;
-
         try {
 
             let pool = await sql.connect(config);
@@ -49,8 +47,46 @@ class PizzaService {
             console.log(error)
         }
         return rowsAffected;
+    }
+    
+    update = async (pizza) =>{
+        let rowsAffected = 0;
+        console.log('Estoy en PizzaService.update')
+        try {
+
+            let pool = await sql.connect(config);
+            let result = await pool.request()
+                                            .input('pId', sql.Int, pizza?.id?? 0)
+                                            .input('pNombre', sql.NChar, pizza?.nombre?? '')
+                                            .input('pLibreGluten', sql.Bit, pizza?.libreGluten?? false)
+                                            .input('pImporte', sql.Float, pizza?.importe?? 0)
+                                            .input('pDescripcion', sql.NChar, pizza?.descripcion ?? '')
+                                            .query('UPDATE Pizzas SET Nombre = @pNombre, LibreGluten = @pLibreGluten, Importe = @pImporte, Descripcion = @pDescripcion WHERE Id = @pId');
+            rowsAffected = result.rowsAffected;
+        } catch (error) {
+            console.log(error)
+        }
+        return rowsAffected;
     } 
     
+    insert = async (pizza) =>{
+        let rowsAffected = 0;
+        console.log('Estoy en PizzaService.insert')
+        try {
+
+            let pool = await sql.connect(config);
+            let result = await pool.request()
+                                            .input('pNombre', sql.NChar, pizza.nombre)
+                                            .input('pLibreGluten', sql.Bit, pizza.libreGluten)
+                                            .input('pImporte', sql.Float, pizza.importe)
+                                            .input('pDescripcion', sql.NChar, pizza.descripcion)
+                                            .query('INSERT INTO Pizzas(Nombre, LibreGluten, Importe, Descripcion) VALUES (@pNombre, @pLibreGluten, @pImporte, @pDescripcion)');
+            rowsAffected = result.rowsAffected;
+        } catch (error) {
+            console.log(error)
+        }
+        return rowsAffected;
+    }
 }
 
 export default PizzaService;
