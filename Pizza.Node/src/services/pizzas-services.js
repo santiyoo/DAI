@@ -1,5 +1,6 @@
 import sql from 'mssql'
 import config from '../../dbconfig.js'
+import { logErr } from '../modules/log-helper.js';
 
 
 class PizzaService {
@@ -12,7 +13,7 @@ class PizzaService {
             returnEntity = result.recordset;
         }
         catch(error){
-            console.log(error);
+            logErr(error, "./modules/error.txt");
         }
         return returnEntity;
     }
@@ -28,7 +29,7 @@ class PizzaService {
             returnEntity = result.recordsets[0][0]
         } 
         catch (error) {
-            console.log(error)
+            logErr(error, "./modules/error.txt");
         }
         return returnEntity;
     } 
@@ -44,7 +45,7 @@ class PizzaService {
             rowsAffected = result.rowsAffected;
 
         } catch (error) {
-            console.log(error)
+            logErr(error, "./modules/error.txt");
         }
         return rowsAffected;
     }
@@ -64,7 +65,7 @@ class PizzaService {
                                             .query('UPDATE Pizzas SET Nombre = @pNombre, LibreGluten = @pLibreGluten, Importe = @pImporte, Descripcion = @pDescripcion WHERE Id = @pId');
             rowsAffected = result.rowsAffected;
         } catch (error) {
-            console.log(error)
+            logErr(error, "./modules/error.txt");
         }
         return rowsAffected;
     } 
@@ -76,14 +77,14 @@ class PizzaService {
 
             let pool = await sql.connect(config);
             let result = await pool.request()
-                                            .input('pNombre', sql.NChar, pizza.nombre)
+                                            .input('pNombre', sql.NChar, nombre.pizza)
                                             .input('pLibreGluten', sql.Bit, pizza.libreGluten)
                                             .input('pImporte', sql.Float, pizza.importe)
                                             .input('pDescripcion', sql.NChar, pizza.descripcion)
                                             .query('INSERT INTO Pizzas(Nombre, LibreGluten, Importe, Descripcion) VALUES (@pNombre, @pLibreGluten, @pImporte, @pDescripcion)');
             rowsAffected = result.rowsAffected;
         } catch (error) {
-            console.log(error)
+            logErr(error);
         }
         return rowsAffected;
     }
