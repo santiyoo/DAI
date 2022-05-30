@@ -1,6 +1,11 @@
 import fs from 'fs'
 
-export const logErr = (newcontent) => {
-    console.log("newcontent", newcontent)
-    fs.writeFileSync("./error.txt", JSON.stringify(newcontent));
+let path = "./src/modules/error.txt"
+
+class logger{
+    logErr(content) {
+        fs.writeFileSync(path, content);
+    }
 }
+
+export default logger;

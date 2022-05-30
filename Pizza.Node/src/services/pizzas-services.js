@@ -1,7 +1,8 @@
 import sql from 'mssql'
 import config from '../../dbconfig.js'
-import { logErr } from '../modules/log-helper.js';
+import logger from '../modules/log-helper.js';
 
+const hola = new logger();
 
 class PizzaService {
     getAll = async ()=>{
@@ -13,7 +14,7 @@ class PizzaService {
             returnEntity = result.recordset;
         }
         catch(error){
-            logErr(error, "./modules/error.txt");
+            hola.logErr(error.toString())
         }
         return returnEntity;
     }
@@ -29,7 +30,7 @@ class PizzaService {
             returnEntity = result.recordsets[0][0]
         } 
         catch (error) {
-            logErr(error, "./modules/error.txt");
+            hola.logErr(error.toString())
         }
         return returnEntity;
     } 
@@ -45,7 +46,7 @@ class PizzaService {
             rowsAffected = result.rowsAffected;
 
         } catch (error) {
-            logErr(error, "./modules/error.txt");
+            hola.logErr(error.toString())
         }
         return rowsAffected;
     }
@@ -65,7 +66,7 @@ class PizzaService {
                                             .query('UPDATE Pizzas SET Nombre = @pNombre, LibreGluten = @pLibreGluten, Importe = @pImporte, Descripcion = @pDescripcion WHERE Id = @pId');
             rowsAffected = result.rowsAffected;
         } catch (error) {
-            logErr(error, "./modules/error.txt");
+            hola.logErr(error.toString())
         }
         return rowsAffected;
     } 
@@ -77,14 +78,14 @@ class PizzaService {
 
             let pool = await sql.connect(config);
             let result = await pool.request()
-                                            .input('pNombre', sql.NChar, nombre.pizza)
+                                            .input('pNombre', sql.NChar, pizza.nombre)
                                             .input('pLibreGluten', sql.Bit, pizza.libreGluten)
                                             .input('pImporte', sql.Float, pizza.importe)
                                             .input('pDescripcion', sql.NChar, pizza.descripcion)
                                             .query('INSERT INTO Pizzas(Nombre, LibreGluten, Importe, Descripcion) VALUES (@pNombre, @pLibreGluten, @pImporte, @pDescripcion)');
             rowsAffected = result.rowsAffected;
         } catch (error) {
-            logErr(error);
+            hola.logErr(error.toString())
         }
         return rowsAffected;
     }
