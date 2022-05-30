@@ -6,24 +6,24 @@ import PizzaService from "./src/services/pizzas-services.js";
 // const port = 5000;
 
 let srv = new PizzaService();
-// let todo = await srv.getAll();
-// console.log(todo);
+let todo = await srv.getAll();
+console.log(todo);
 
-// let pizzaId = await srv.getById(5);
-// console.log(pizzaId);
+let pizzaId = await srv.getById(5);
+console.log(pizzaId);
 
-// let pizzaBorrada = await srv.deleteById(1);
-// console.log(pizzaBorrada);
+let pizzaBorrada = await srv.deleteById(1);
+console.log(pizzaBorrada);
 
-// let pizza = new Pizza()
-// pizza.id = 2
-// pizza.nombre = 'Pizza Fugazzeta'
-// pizza.libreGluten = true
-// pizza.importe = 46
-// pizza.descripcion = 'Chau'
+let pizza = new Pizza()
+pizza.id = 2
+pizza.nombre = 'Pizza Fugazzeta'
+pizza.libreGluten = true
+pizza.importe = 46
+pizza.descripcion = 'Chau'
 
-// let pizzaActualizada = await srv.update(pizza)
-// console.log(pizzaActualizada)
+let pizzaActualizada = await srv.update(pizza)
+console.log(pizzaActualizada)
 
 let pizza2 = new Pizza()
 pizza2.nombre = 'Pizza X'
