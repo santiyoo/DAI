@@ -38,6 +38,7 @@ console.log('Hola Mundo')
 
 
 //console.log(router);
+app.use(express.json()) // for parsing application/json
 app.use('/api/pizzas', pizzaController );
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

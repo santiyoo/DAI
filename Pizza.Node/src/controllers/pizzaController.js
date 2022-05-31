@@ -27,11 +27,17 @@ router.get('/', async (req, res) => {
     res.send(datos);
   })
 
-//   router.post('/', async (req, res) => {
-//     console.log('router.get');
-//     let datos = await srv.insert(req.body);
-//     res.send(datos);
-//   })
+  router.put('', async (req, res) => {
+    console.log('router.get');
+    let datos = await srv.update(req.body);
+    res.send(datos);
+  })
+
+  router.post('', async (req, res) => {
+    console.log('router.get');
+    let datos = await srv.insert(req.body);
+    res.send(datos);
+  })
 /*
 router.get('/api/pizzas', srv.getAll)
 router.get('/api/pizzas/:Id', srv.getById)
