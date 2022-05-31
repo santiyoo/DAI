@@ -1,1 +1,1 @@
-TypeError: pool.request is not a function
+TypeError: Cannot read properties of undefined (reading 'nombre')

@@ -14,9 +14,10 @@ class PizzaService {
             returnEntity = result.recordset;
         }
         catch(error){
-            hola.logErr(error.toString())
+            console.log(error.toString());
+            hola.logErr(error.toString());
         }
-        return returnEntity;
+        return  returnEntity;
     }
 
     getById = async (id) => {
