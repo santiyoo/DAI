@@ -85,6 +85,7 @@ class PizzaService {
                                             .input('pDescripcion', sql.NChar, pizza.Descripcion)
                                             .query('INSERT INTO Pizzas(Nombre, LibreGluten, Importe, Descripcion) VALUES (@pNombre, @pLibreGluten, @pImporte, @pDescripcion)');
             rowsAffected = result.rowsAffected;
+            
         } catch (error) {
             hola.logErr(error.toString())
         }

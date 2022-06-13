@@ -18,25 +18,43 @@ router.get('/', async (req, res) => {
   router.get('/:id', async (req, res) => {
     console.log('router.get');
     let datos = await srv.getById(req.params['id']);
-    res.send(datos);
+
+    if (datos != null) {
+      res.send(datos);
+    } else {
+      res.status(404).send('Perdon, no se ha encontrado');
+    }
+
   })
 
   router.delete('/:id', async (req, res) => {
     console.log('router.delete');
     let datos = await srv.deleteById(req.params['id']);
-    res.send(datos);
+    if (datos != 0) {
+      res.send(datos);
+    } else {
+      res.status(404).send('Esa pizza no existe :)');
+    }
   })
 
   router.put('', async (req, res) => {
     console.log('router.put');
     let datos = await srv.update(req.body);
-    res.send(datos);
+    if (datos != 0) {
+      res.send(datos);
+    } else {
+      res.status(404).send('Error');
+    }
   })
 
   router.post('', async (req, res) => {
     console.log('router.post');
     let datos = await srv.insert(req.body);
-    res.send(datos);
+    if (datos != null) {
+      res.send(datos);
+    } else {
+      res.status(404).send('Error');
+    }
   })
 /*
 router.get('/api/pizzas', srv.getAll)
