@@ -22,19 +22,19 @@ router.get('/', async (req, res) => {
   })
 
   router.delete('/:id', async (req, res) => {
-    console.log('router.get');
+    console.log('router.delete');
     let datos = await srv.deleteById(req.params['id']);
     res.send(datos);
   })
 
   router.put('', async (req, res) => {
-    console.log('router.get');
+    console.log('router.put');
     let datos = await srv.update(req.body);
     res.send(datos);
   })
 
   router.post('', async (req, res) => {
-    console.log('router.get');
+    console.log('router.post');
     let datos = await srv.insert(req.body);
     res.send(datos);
   })
