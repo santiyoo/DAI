@@ -1,1 +1,1 @@
-TypeError: Cannot read properties of undefined (reading 'nombre')
+ConnectionError: Failed to connect to localhost:1433 - Could not connect (sequence)
